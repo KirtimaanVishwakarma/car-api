@@ -10,8 +10,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
 import brandRoute from "./routes/brandRoute.js";
+import carRoute from "./routes/carRoute.js";
 
 app.use("/api/v1", brandRoute);
+app.use("/api/v1", carRoute);
 
 // error middleware
 app.use(errorHandler);
