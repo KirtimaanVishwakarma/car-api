@@ -13,6 +13,9 @@ export const createBrand = catchAsyncError(async (req, res, next) => {
 
 export const getAllBrand = catchAsyncError(async (req, res, next) => {
   const brands = await BrandSchema.find();
+  if (!brands) {
+    return next(new ErrorHandler("brand list not found", 400));
+  }
   res.status(200).json({
     success: true,
     brands,
@@ -22,11 +25,10 @@ export const getAllBrand = catchAsyncError(async (req, res, next) => {
 export const getBrand = async (req, res, next) => {
   const id = req.params.id;
 
-  if (!id) {
-    return next(new ErrorHandler("please provide valid Id", 400));
-  }
-
   const brand = await BrandSchema.findById(id);
+  if (!brand) {
+    return next(new ErrorHandler("brand not found", 400));
+  }
   res.status(200).json({
     success: true,
     brand,

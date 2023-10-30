@@ -22,7 +22,7 @@ const schema = new mongoose.Schema({
     type: Number,
     required: [true, "Mileage is required"],
   },
-  Doors: {
+  doors: {
     type: Number,
     default: 4,
   },
@@ -60,7 +60,7 @@ const schema = new mongoose.Schema({
     type: Number,
     required: [true, "No. of cylinder is required"],
   },
-  Transmission: {
+  transmission: {
     type: String,
     default: "Manual",
   },
@@ -77,19 +77,26 @@ const schema = new mongoose.Schema({
   fuleInjection: {
     type: String,
   },
-  Power: {
+  power: {
     type: String,
-    required: [true, "Power is required"],
   },
   engineLocation: {
     type: String,
     default: "front",
   },
-  Features: [
+  odometer: {
+    type: Number,
+    required: [true, "odometer is required"],
+  },
+  features: [
     {
       type: String,
     },
   ],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 export const CarSchema = mongoose.model("Car", schema);
