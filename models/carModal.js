@@ -2,9 +2,24 @@ import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
   brand: {
-    type: mongoose.Schema.ObjectId,
-    ref: "Brand",
-    required: true,
+    name: {
+      type: String,
+      default: "tata",
+    },
+    logo: {
+      public_id: {
+        type: String,
+        default: "public_id",
+      },
+      url: {
+        type: String,
+        default: "url",
+      },
+    },
+  },
+  images: {
+    public_id: { type: String, required: true },
+    url: { type: String, required: true },
   },
   price: {
     type: Number,
