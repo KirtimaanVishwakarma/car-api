@@ -31,6 +31,8 @@ export const logout = catchAsyncError(async (req, res, next) => {
     //token value is null now
     expires: new Date(Date.now()),
     httpOnly: true,
+    secure: true,
+    sameSite: "none",
   });
   res.status(200).json({
     success: true,
