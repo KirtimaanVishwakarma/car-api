@@ -4,6 +4,7 @@ import { CarSchema } from "../models/carModal.js";
 import ApiFeatures from "../utils/apiFeature.js";
 import getDataUri from "../utils/dataUri.js";
 import ErrorHandler from "../utils/errorHandler.js";
+import cloudinary from "cloudinary";
 
 export const createCar = catchAsyncError(async (req, res, next) => {
   const {
