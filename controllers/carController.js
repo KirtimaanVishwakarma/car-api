@@ -106,6 +106,7 @@ export const getAllCars = catchAsyncError(async (req, res, next) => {
     elements: car.length,
     size: Number(resultPerPage),
     filteredCount,
+    page: Number(req.query.page) || 1,
   });
 });
 
