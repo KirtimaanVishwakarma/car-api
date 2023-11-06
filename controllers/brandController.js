@@ -3,6 +3,7 @@ import { BrandSchema } from "../models/brandModal.js";
 import getDataUri from "../utils/dataUri.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import cloudinary from "cloudinary";
+import ApiFeatures from "../utils/apiFeature.js";
 
 export const createBrand = catchAsyncError(async (req, res, next) => {
   const { name } = req.body;
@@ -26,13 +27,26 @@ export const createBrand = catchAsyncError(async (req, res, next) => {
 });
 
 export const getAllBrand = catchAsyncError(async (req, res, next) => {
-  const brands = await BrandSchema.find();
-  if (!brands) {
-    return next(new ErrorHandler("brand list not found", 400));
-  }
+  const resultPerPage = req.query.size || 10;
+  const brandCount = await BrandSchema.countDocuments();
+
+  const apiFeatures = new ApiFeatures(BrandSchema.find(), req.query)
+    .search()
+    .filter()
+    .pagination(resultPerPage);
+
+  let brands = await apiFeatures.query;
+
+  let filteredCount = reviews.length;
+
   res.status(200).json({
     success: true,
-    brands,
+    list: brands,
+    totalElement: brandCount,
+    elements: brands.length,
+    size: Number(resultPerPage),
+    filteredCount,
+    page: Number(req.query.page) || 1,
   });
 });
 
