@@ -37,7 +37,7 @@ export const getAllBrand = catchAsyncError(async (req, res, next) => {
 
   let brands = await apiFeatures.query;
 
-  let filteredCount = reviews.length;
+  let filteredCount = brands.length;
 
   res.status(200).json({
     success: true,
