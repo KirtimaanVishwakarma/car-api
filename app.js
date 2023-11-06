@@ -21,10 +21,12 @@ app.use(
 import brandRoute from "./routes/brandRoute.js";
 import carRoute from "./routes/carRoute.js";
 import userRoute from "./routes/userRoute.js";
+import reviewRoute from "./routes/reviewRoute.js";
 
 app.use("/api/v1", brandRoute);
 app.use("/api/v1", carRoute);
 app.use("/api/v1", userRoute);
+app.use("/api/v1", reviewRoute);
 
 // error middleware
 app.use(errorHandler);
