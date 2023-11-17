@@ -123,13 +123,14 @@ export const getCar = async (req, res, next) => {
 };
 
 export const updateCar = catchAsyncError(async (req, res, next) => {
-  const { file } = req.files;
   let car = await CarSchema.findById(req.params.id);
   if (!car) {
     return next(new ErrorHandler("Car not found", 400));
   }
+
   let images;
-  if (file) {
+  if (req.files) {
+    const { file } = req.files;
     const fileUri = getDataUri(file);
     const myCloud = await cloudinary.v2.uploader.upload(fileUri.content);
     await cloudinary.v2.uploader.destroy(car.images.public_id);
@@ -139,9 +140,11 @@ export const updateCar = catchAsyncError(async (req, res, next) => {
     };
   }
 
+  let body = images ? { ...req.body, images } : { ...req.body };
+
   const updatedCar = await CarSchema.findByIdAndUpdate(
     req.params.id,
-    { ...req.body, images },
+    { ...body },
     { new: true }
   );
   if (!updatedCar) {

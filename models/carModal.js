@@ -108,9 +108,9 @@ const schema = new mongoose.Schema({
       type: String,
     },
   ],
-  offer: {
-    type: Boolean,
-    default: false,
+  status: {
+    type: String,
+    default: "upcoming",
   },
   createdAt: {
     type: Date,
