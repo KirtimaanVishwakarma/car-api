@@ -20,7 +20,7 @@ export const createOffer = catchAsyncError(async (req, res, next) => {
     specialOfferPrice: discountPrice,
     discountPercentage,
   });
-  getCar.offer = true;
+  getCar.status = "offer";
   await getCar.save();
   res.status(201).json({ success: true, offer });
 });
@@ -108,7 +108,7 @@ export const deleteOffer = catchAsyncError(async (req, res, next) => {
 
   const car = await CarSchema.findById(offer.car._id);
 
-  car.offer = false;
+  car.status = "most-searched";
   car.save();
   await offer.deleteOne();
   res.status(200).json({
