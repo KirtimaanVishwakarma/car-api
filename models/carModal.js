@@ -18,8 +18,8 @@ const schema = new mongoose.Schema({
     },
   },
   images: {
-    public_id: { type: String, required: true },
-    url: { type: String, required: true },
+    public_id: { type: String },
+    url: { type: String },
   },
   price: {
     type: Number,
@@ -108,6 +108,10 @@ const schema = new mongoose.Schema({
       type: String,
     },
   ],
+  offer: {
+    type: Boolean,
+    default: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
