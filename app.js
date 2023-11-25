@@ -23,12 +23,16 @@ import carRoute from "./routes/carRoute.js";
 import userRoute from "./routes/userRoute.js";
 import reviewRoute from "./routes/reviewRoute.js";
 import offerRoute from "./routes/offerRoute.js";
+import inquiryRoute from "./routes/inquiryRoute.js";
+import contactRoute from "./routes/contactRoute.js";
 
 app.use("/api/v1", brandRoute);
 app.use("/api/v1", carRoute);
 app.use("/api/v1", userRoute);
 app.use("/api/v1", reviewRoute);
 app.use("/api/v1", offerRoute);
+app.use("/api/v1", inquiryRoute);
+app.use("/api/v1", contactRoute);
 
 // error middleware
 app.use(errorHandler);
