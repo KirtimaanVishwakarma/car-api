@@ -29,6 +29,10 @@ const schema = new mongoose.Schema({
     type: String,
     required: [true, "Model is required"],
   },
+  bodyType: {
+    type: String,
+    required: [true, "Body Type is required"],
+  },
   modelYear: {
     type: Number,
     required: [true, "Model year is required"],
@@ -47,7 +51,9 @@ const schema = new mongoose.Schema({
   },
   engineSize: {
     type: Number,
-    required: [true, "Engine CC is required"],
+  },
+  engine: {
+    type: Number,
   },
   color: {
     type: String,
@@ -68,16 +74,16 @@ const schema = new mongoose.Schema({
   fuelType: [
     {
       type: String,
-      default: "Petrol",
+      default: "petrol",
     },
   ],
   cylinder: {
     type: Number,
-    required: [true, "No. of cylinder is required"],
+    default: 3,
   },
   transmission: {
     type: String,
-    default: "Manual",
+    default: "manual",
   },
   wheel: {
     type: Number,

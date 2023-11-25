@@ -30,7 +30,6 @@ class ApiFeatures {
     );
     if (anyValueMatches) {
       removeFields.forEach((key) => delete queryCopy[key]);
-
       // Filter for price and rating
       let queryStr = JSON.stringify(queryCopy);
       queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (key) => `$${key}`);

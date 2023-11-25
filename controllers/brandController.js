@@ -65,13 +65,13 @@ export const getBrand = async (req, res, next) => {
 
 export const updateBrand = catchAsyncError(async (req, res, next) => {
   const { name } = req.body;
-  const { file } = req.files;
   let brand = await BrandSchema.findById(req.params.id);
 
   if (!brand) {
     return next(new ErrorHandler("Brand not found", 400));
   }
-  if (file) {
+  if (req.file) {
+    const { file } = req.files;
     const fileUri = getDataUri(file);
 
     const myCloud = await cloudinary.v2.uploader.upload(fileUri.content);
